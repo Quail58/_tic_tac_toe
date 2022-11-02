@@ -8,13 +8,22 @@ const gameBoard = (() => {
     ];
     //creates the grid
     const grid = document.getElementById('board');
+    let counter = 0;
 
     //makes a grid for the gameboard
     function makeGrid(){       
-        for (i = 0; i < 9; i++){
+        for (i = 0; i < 9; i++){           
             cell = document.createElement("button");
             cell.setAttribute('class', i+1);
-            cell.addEventListener('click', function changeSymbol() {this.innerHTML = 'X';});     
+            cell.addEventListener('click', function changeSymbol() {
+                if (counter % 2 == 0){
+                    this.innerHTML = 'X';
+                    counter++;
+                } else {
+                    this.innerHTML = 'O';
+                    counter++;              
+                }                
+            });     
             grid.appendChild(cell);
         } 
     }
