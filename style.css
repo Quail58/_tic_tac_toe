@@ -2,6 +2,7 @@ body {
     display: grid;
     justify-content: center;
     grid-template-rows: 1fr 3fr;
+    background-color: 	#c4bdbd;
 }
 #board {
     height: 50vh;
