@@ -1,4 +1,4 @@
-// module to stoe the gameboard
+// module to store the gameboard
 const gameBoard = (function(){
     //matrix for the board
     let _board = [
