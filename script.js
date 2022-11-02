@@ -1,46 +1,20 @@
 // module to store the gameboard
-const gameBoard = (function(){
+const gameBoard = (() => {
     //matrix for the board
     let _board = [
         [0,0,0],
         [0,0,0],
         [0,0,0]
     ];
+    //creates the grid
     const grid = document.getElementById('board');
 
     //makes a grid for the gameboard
-    const makeGrid = () => {       
+    function makeGrid(){       
         for (i = 0; i < 9; i++){
             cell = document.createElement("button");
-            cell.setAttribute('id', 'tacbox');
-            // checks for the first array
-            if (i <=2 ){
-                //sets to empty if its not "X" or "O"
-                if (_board[0][i] == 0) {
-                    cell.innterHTML= ""
-                } else {
-                    cell.setAttribute('class', _board[0][i]);
-                    cell.innerHTML = _board[0][i];
-                }
-            // checks for the second array
-            } else if (i >=3 && i < 6){
-                //sets to empty if its not "X" or "O"
-                if (_board[1][i-3] == 0) {
-                    cell.innterHTML= ""
-                } else {
-                    cell.setAttribute('class', _board[1][i-3]);
-                    cell.innerHTML = _board[1][i-3];
-                }
-            // defaults to the third array                
-            } else {
-                //sets to empty if its not "X" or "O"
-                if (_board[2][i-6] == 0) {
-                    cell.innterHTML= ""
-                } else {
-                    cell.setAttribute('class', _board[2][i-6]);
-                    cell.innerHTML = _board[2][i-6];
-                }  
-            }     
+            cell.setAttribute('class', i+1);
+            cell.addEventListener('click', function changeSymbol() {this.innerHTML = 'X';});     
             grid.appendChild(cell);
         } 
     }
@@ -57,3 +31,7 @@ const Player = (name, symbol) => {
 
 }
 
+// module to control the flow of the game
+const playGame = () => {
+
+}
