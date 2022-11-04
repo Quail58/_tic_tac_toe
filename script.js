@@ -13,13 +13,14 @@ const gameBoard = (() => {
     //creates the grid
     const _grid = document.getElementById('middle');
     const _bottom = document.getElementById('bottom');
+    const _turn = document.getElementById('turn');
     let _counter = 0;
     let playCount = 0;
     //function to create win screen
     function _winScreen(token){
         const winTitle = document.createElement('div');
         winTitle.setAttribute('class', 'win');
-        winTitle.innerHTML = token
+        winTitle.innerHTML = token;
         _bottom.appendChild(winTitle);
         const resetButton = document.createElement('button');
         resetButton.innerHTML = "Play Again?";
@@ -155,6 +156,7 @@ const gameBoard = (() => {
                     this.disabled = true;
                     _counter++;
                     playCount++;
+                    _turn.innerHTML = "O's turn";
                     //changes the array
                     if (tokenSet <= 2){ 
                         _board[0].splice(tokenSet, 1, "X");
@@ -175,6 +177,7 @@ const gameBoard = (() => {
                     this.disabled = true;
                     _counter++;
                     playCount++;
+                    _turn.innerHTML = "X's turn";
                     //changes the array
                     if (tokenSet <= 2){ 
                         _board[0].splice(tokenSet, 1, "O");
@@ -200,13 +203,3 @@ const gameBoard = (() => {
 })();
 
 console.log(gameBoard.makeGrid());
-
-// factory function to make the player
-const Player = (name, symbol) => {
-
-}
-
-// module to control the flow of the game
-const playGame = () => {
-
-}
