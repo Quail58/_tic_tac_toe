@@ -7,32 +7,57 @@ const gameBoard = (() => {
         [7,8,9]
     ];
     //creates the grid
-    const _grid = document.getElementById('board');
+    const _grid = document.getElementById('middle');
     let _counter = 0;
 
     //function to compare the values of the array
     function _checkWin() {
+        const _deleteBoard = document.getElementById('board');
         //checks across
-        if (_board[0][0] == _board[0][1] && _board[0][0] == _board[0][2] || _board[1][0] == _board[1][1] && _board[1][0] == _board[1][2] || _board[2][0] == _board[2][1] && _board[2][0] == _board[2][2]){
-            console.log("win!")
-        
-        //checks up and down
-        } else if(_board[0][0] == _board[1][0] && _board[0][0] == _board[2][0] || _board[0][1] == _board[1][1] && _board[0][1] == _board[2][1] || _board[0][2] == _board[1][2] && _board[0][2] == _board[2][2]) {
-            console.log("win!")
+        if (_board[0][0] == _board[0][1] && _board[0][0] == _board[0][2]){
+            if (_board[0][0] == 'X'){
+                console.log('X wins');
+                _deleteBoard.remove();                
+            } else {
+                console.log('O wins');
+                _deleteBoard.remove();
+            }
+        } else if(_board[1][0] == _board[1][1] && _board[1][0] == _board[1][2]) {
+            console.log("win!");
 
-        //checks diagonal
-        } else if(_board[0][0] == _board[1][1] && _board[0][0] == _board[2][2] || _board[0][2] == _board[1][1] && _board[0][2] == _board[2][0]) {
-            console.log("win!")
+        } else if(_board[2][0] == _board[2][1] && _board[2][0] == _board[2][2]) {
+            console.log("win!");
+
+        } else if(_board[0][0] == _board[1][0] && _board[0][0] == _board[2][0]) {
+            console.log("win!");
+
+        } else if(_board[0][1] == _board[1][1] && _board[0][1] == _board[2][1]){
+            console.log("win!");
+
+        } else if(_board[0][2] == _board[1][2] && _board[0][2] == _board[2][2]){
+            console.log("win!");
+
+        }else if(_board[0][0] == _board[1][1] && _board[0][0] == _board[2][2]) {
+            console.log("win!");
+            
+        } else if(_board[0][2] == _board[1][1] && _board[0][2] == _board[2][0]){
+            console.log("win!");
+
+        } else if(_counter == 9){
+            console.log("Its a tie!")
         }
     }
 
     //makes a grid for the gameboard
-    function makeGrid(){       
-        for (i = 0; i < 9; i++){         
+    function makeGrid(){
+        createBoard = document.createElement('div');
+        createBoard.setAttribute('id', 'board');
+        _grid.appendChild(createBoard);        
+        for (i = 0; i < 9; i++){        
             cell = document.createElement("button");
             cell.setAttribute('class', i);
+            cell.setAttribute('id', 'gridChild')
             cell.addEventListener('click', function changeSymbol() {
-
                 //replaces token slot with "X"
                 if (_counter % 2 == 0){
                     tokenSet = this.className;
@@ -41,6 +66,7 @@ const gameBoard = (() => {
                     this.innerHTML = 'X';
                     this.disabled = true;
                     _counter++;
+                    console.log(_board);
                     //changes the array
                     if (tokenSet <= 2){ 
                         _board[0].splice(tokenSet, 1, "X");
@@ -52,7 +78,6 @@ const gameBoard = (() => {
                         _board[2].splice(tokenSetThree, 1, "X");
                         _checkWin();
                     }
-
                 //replaces token slot with "0" 
                 } else {
                     tokenSet = this.className;
@@ -62,7 +87,6 @@ const gameBoard = (() => {
                     this.disabled = true;
                     _counter++;
                     console.log(_board);
-                    console.log(this.className)
                     //changes the array
                     if (tokenSet <= 2){ 
                         _board[0].splice(tokenSet, 1, "O");
@@ -76,10 +100,10 @@ const gameBoard = (() => {
                     }              
                 }                
             });     
-            _grid.appendChild(cell);
+            createBoard.appendChild(cell);
         } 
     }
-    
+    //returns the makegrid to global
     return {
         makeGrid
     }    
