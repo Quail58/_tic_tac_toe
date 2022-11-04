@@ -30,9 +30,16 @@ body {
 button {
     border: 0;
     font-size: 4rem;
+    background-color: lightgrey;
 }
 
 button:hover {
     background-color: grey;
     cursor: pointer;
+}
+
+button:disabled {
+    background-color: lightgrey;
+    color: black;
+    cursor: not-allowed;
 }
